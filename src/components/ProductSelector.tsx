@@ -8,7 +8,7 @@ const products: Product[] = [
 ];
 
 const ProductSelector = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const handleSelect = (p: Product) => {
     setSelectedProduct(p);
   };
