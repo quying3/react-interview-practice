@@ -25,6 +25,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProp) => {
 
 export default Modal;
 
+// practice only
 export const Child = () => {
   return <p>Hi! Children</p>;
 };
