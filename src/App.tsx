@@ -5,7 +5,7 @@ import "./App.css";
 // import UserList from "./components/UserList";
 // import SignUpForm from "./components/SignUpForm";
 // import ProductSelector from "./components/ProductSelector";
-import UserSearchList from "./components/UserSearchList";
+// import UserSearchList from "./components/UserSearchList";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       {/* <UserList /> */}
       {/* <SignUpForm /> */}
       {/* <ProductSelector /> */}
-      <UserSearchList />
+      {/* <UserSearchList /> */}
     </>
   );
 }
