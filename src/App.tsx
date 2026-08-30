@@ -8,6 +8,7 @@ import { useState } from "react";
 // import ProductSelector from "./components/ProductSelector";
 // import UserSearchList from "./components/UserSearchList";
 // import Modal, { Child } from "./components/Modal";
+// import DebouncedSearch from "./components/DebouncedSearch";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/* <SignUpForm /> */}
       {/* <ProductSelector /> */}
       {/* <UserSearchList /> */}
+      {/* <DebouncedSearch /> */}
     </>
   );
 }
