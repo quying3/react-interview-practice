@@ -10,6 +10,7 @@ import { useState } from "react";
 // import Modal, { Child } from "./components/Modal";
 // import DebouncedSearch from "./components/DebouncedSearch";
 // import ThrottledInput from "./components/ThrottledInput";
+// import StopWatch from "./components/StopWatch";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       {/* <UserSearchList /> */}
       {/* <DebouncedSearch /> */}
       {/* <ThrottledInput /> */}
+      {/* <StopWatch /> */}
     </>
   );
 }
