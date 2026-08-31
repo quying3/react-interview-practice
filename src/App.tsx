@@ -11,6 +11,7 @@ import { useState } from "react";
 // import DebouncedSearch from "./components/DebouncedSearch";
 // import ThrottledInput from "./components/ThrottledInput";
 // import StopWatch from "./components/StopWatch";
+import StarRating from "./components/StarRating";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       {/* <DebouncedSearch /> */}
       {/* <ThrottledInput /> */}
       {/* <StopWatch /> */}
+      <StarRating />
     </>
   );
 }
