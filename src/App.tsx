@@ -5,7 +5,6 @@ import { useState } from "react";
 // import UserSearch from "./components/UserSearch";
 // import UserList from "./components/UserList";
 // import SignUpForm from "./components/SignUpForm";
-// import ProductSelector from "./components/ProductSelector";
 // import UserSearchList from "./components/UserSearchList";
 // import Modal, { Child } from "./components/Modal";
 // import DebouncedSearch from "./components/DebouncedSearch";
@@ -13,6 +12,7 @@ import { useState } from "react";
 // import StopWatch from "./components/StopWatch";
 // import StarRating from "./components/StarRating";
 // import ToggleExample from "./components/ToggleExample";
+// import ProductSelector from "./components/ProductSelector";
 
 function App() {
   return (
@@ -22,13 +22,13 @@ function App() {
       {/* <UserSearch /> */}
       {/* <UserList /> */}
       {/* <SignUpForm /> */}
-      {/* <ProductSelector /> */}
       {/* <UserSearchList /> */}
       {/* <DebouncedSearch /> */}
       {/* <ThrottledInput /> */}
       {/* <StopWatch /> */}
       {/* <StarRating /> */}
       {/* <ToggleExample /> */}
+      {/* <ProductSelector /> */}
     </>
   );
 }

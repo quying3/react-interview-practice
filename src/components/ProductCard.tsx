@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export type Product = {
   id: number;
@@ -6,17 +6,37 @@ export type Product = {
 };
 
 type ProductCardProps = {
-  product: Product;
-  onSelect: (p: Product) => void;
+  selectedProduct: Product;
+  buttonText: string;
+  onClear: () => void;
 };
 
-const ProductCard = ({ product, onSelect }: ProductCardProps) => {
+const ProductCard = ({
+  selectedProduct,
+  onClear,
+  buttonText,
+}: ProductCardProps) => {
+  console.log(`ProductCard render: ${selectedProduct.name} - ${buttonText}`);
   return (
-    <div>
-      <span>{product.name}</span>
-      <button onClick={() => onSelect(product)}>Select</button>
+    <div
+      style={{
+        width: "220px",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        alignItems: "center",
+        textAlign: "left",
+      }}
+    >
+      <span>{selectedProduct.name}</span>
+      <button
+        style={{ width: "80px", justifySelf: "right" }}
+        type="button"
+        onClick={onClear}
+      >
+        {buttonText}
+      </button>
     </div>
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
