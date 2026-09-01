@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import ProductCard, { type Product } from "./ProductCard";
 
 const products: Product[] = [
@@ -8,55 +8,96 @@ const products: Product[] = [
 ];
 
 const ProductSelector = () => {
+  const [count, setCount] = useState<number>(0);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const handleSelect = (p: Product) => {
-    setSelectedProduct(p);
-  };
-  return (
-    <>
-      <div>ProductSelector</div>
 
+  const handleClear = useCallback(() => setSelectedProduct(null), []);
+  // const handleClear = () => setSelectedProduct(null);
+  return (
+    <div>
       <div
         style={{
+          marginTop: "32px",
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
         }}
       >
-        <p>Selected: {selectedProduct?.name ?? "None"}</p>
+        <p>{count}</p>
+        <button
+          style={{ width: "80px" }}
+          onClick={() => setCount((prev) => prev + 1)}
+        >
+          increment
+        </button>
+      </div>
+      <div
+        style={{
+          marginTop: "32px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onSelect={handleSelect}
-          />
+          <div
+            key={product.name}
+            style={{
+              width: "220px",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              alignItems: "center",
+              textAlign: "left",
+            }}
+          >
+            <span>{product.name}</span>
+            <button
+              style={{ width: "80px", justifySelf: "right" }}
+              type="button"
+              onClick={() => setSelectedProduct(product)}
+            >
+              select
+            </button>
+          </div>
         ))}
       </div>
-    </>
+      <div
+        style={{
+          marginTop: "32px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {selectedProduct ? (
+          <ProductCard
+            selectedProduct={selectedProduct}
+            onClear={handleClear}
+            buttonText="clear"
+          />
+        ) : (
+          <p>No product selected</p>
+        )}
+      </div>
+    </div>
   );
 };
 
 export default ProductSelector;
 
-// # Exercise 6 — Parent / Child State
+// Exercise 12 — Parent / Child Rendering Optimization
 
-// ## Goal
+// Build a small product selector using React + TypeScript.
 
-// Practice:
-// - Props
-// - Callback functions
-// - Lifting state up
-// - Parent → child communication
-// - Child → parent communication
+// Create:
 
-// ## Task
+// * a parent component called `ProductSelector`
+// * a child component called `ProductCard`
 
-// Build a small **Product Selector** using two React components:
+// Use this product data:
 
-// - `ProductSelector` — parent component
-// - `ProductCard` — child component
-
-// Use the following data:
-
+// ```tsx
 // type Product = {
 //   id: number;
 //   name: string;
@@ -67,46 +108,60 @@ export default ProductSelector;
 //   { id: 2, name: "Phone" },
 //   { id: 3, name: "Tablet" },
 // ];
+// ```
 
-// ## Requirements
+// Requirements:
 
-// ### ProductSelector (Parent)
+// 1. `ProductSelector` should manage:
 
-// 1. Store the currently selected product in state.
-// 2. Render all products using `.map()`.
-// 3. Pass each product to `ProductCard` through props.
-// 4. Pass a callback function to `ProductCard`.
-// 5. When a product is selected, update the parent's state.
-// 6. Display the currently selected product at the top.
+//    * a `count` state
+//    * a `selectedProduct` state
 
-// Before selection:
+// 2. Display the current count and an Increment button.
 
-// Selected: None
+// 3. Clicking Increment should increase the count.
 
-// After selecting Laptop:
+// 4. Display the available products:
 
-// Selected: Laptop
+//    * Laptop
+//    * Phone
+//    * Tablet
 
-// ### ProductCard (Child)
+//    Each product should have a Select button.
 
-// 1. Receive a product through props.
-// 2. Receive the parent's callback through props.
-// 3. Display the product name.
-// 4. Render a `Select` button.
-// 5. When the button is clicked, call the callback and tell the parent which product was selected.
+// 5. Clicking Select should make that product the current `selectedProduct`.
 
-// Example UI:
+// 6. Render `ProductCard` inside `ProductSelector`.
 
-// Selected: None
+// 7. Pass the selected product from the parent to `ProductCard`.
 
-// Laptop    [Select]
-// Phone     [Select]
-// Tablet    [Select]
+// 8. `ProductCard` should:
 
-// ## Rules
+//    * display the selected product name
+//    * display `"No product selected"` if there is no selection
+//    * have a Clear Selection button
 
-// - Do not store `selectedProduct` state inside `ProductCard`.
-// - The selected product state should live in the parent.
-// - Use TypeScript types for the child props.
-// - Remember to use `key` when rendering `ProductCard` with `.map()`.
-// - You can keep both components in the same `.tsx` file.
+// 9. The Clear Selection button should trigger a callback provided by the parent and clear the selected product.
+
+// 10. Add a `console.log` inside `ProductCard` so you can observe when the child component renders.
+
+// 11. Test what happens when:
+
+//     * you select a product
+//     * you repeatedly click Increment without changing the selected product
+
+// 12. Optimize the component so that `ProductCard` does not unnecessarily re-render when the parent's `count` changes but the props relevant to `ProductCard` have not meaningfully changed.
+
+// 13. Practice using:
+
+//     * `React.memo`
+//     * `useCallback`
+
+// 14. Be prepared to explain why a callback function passed as a prop can affect whether a memoized child re-renders.
+
+// Use React + TypeScript.
+// Do not use external libraries.
+
+// Goal:
+
+// Practice parent/child rendering behavior, props, callback props, `React.memo`, `useCallback`, referential equality, and avoiding unnecessary child re-renders.
